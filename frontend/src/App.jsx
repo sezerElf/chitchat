@@ -8,6 +8,7 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Admin from "./pages/Admin";
 import RequireAuth from "./RequireAuth";
+import Test from "./pages/Test";
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/error" element={<NotFound />} />
+      <Route path="/chat/test" element={<Test />} />
     </Routes>
   );
 }
