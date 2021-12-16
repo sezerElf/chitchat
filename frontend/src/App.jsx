@@ -8,7 +8,7 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Admin from "./pages/Admin";
 import RequireAuth from "./RequireAuth";
-import Test from "./pages/Test";
+import Chat from "./pages/Chat";
 
 export default function App() {
   return (
@@ -24,13 +24,13 @@ export default function App() {
       >
         <Route index element={<Home />} />
         <Route path="profile" element={<Profile />} />
+        <Route path="chat/:topicName/:topicId" element={<Chat />} />
         <Route path="admin" element={<Admin />} />
       </Route>
 
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/error" element={<NotFound />} />
-      <Route path="/chat/test" element={<Test />} />
     </Routes>
   );
 }

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axiosService from "../../services/axiosService";
+import { Link } from "react-router-dom";
+
 export default function TopicCard() {
   const [categories, setCategories] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -33,9 +35,11 @@ export default function TopicCard() {
                     <h2 className="card-title">{category.title}</h2>
                     <p>{category.topic}</p>
                     <div className="card-actions">
-                      <button className="btn btn-primary">
-                        Tartışmaya Katıl
-                      </button>
+                      <Link to={`/chat/${category.title}/${category.id}`}>
+                        <button className="btn btn-primary">
+                          Tartışmaya Katıl
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
