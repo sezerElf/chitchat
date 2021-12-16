@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axiosService from "../../services/axiosService";
 
 export default function AddCategoryModal({ show, setShow, getCategory }) {
   const [title, setTitle] = useState("");
@@ -8,7 +8,7 @@ export default function AddCategoryModal({ show, setShow, getCategory }) {
   async function handleCreateCategory(e) {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/api/category", {
+      await axiosService.post("/category", {
         title,
         topic,
       });

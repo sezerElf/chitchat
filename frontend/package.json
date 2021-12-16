@@ -7,13 +7,15 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@stomp/stompjs": "^6.1.2",
     "axios": "^0.24.0",
     "daisyui": "^1.16.2",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-icons": "^4.3.1",
     "react-router-dom": "^6.0.2",
-    "sockjs-client": "^1.5.2"
+    "sockjs-client": "^1.5.2",
+    "websocket": "^1.0.34"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^1.0.0",

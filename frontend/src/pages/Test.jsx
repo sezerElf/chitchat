@@ -1,28 +1,55 @@
-import { useEffect } from "react";
-import SockJs from "sockjs-client";
+import { Stomp } from "@stomp/stompjs";
+import { useEffect, useState } from "react";
+
+let client;
 
 export default function Test() {
-  let sock;
+  const [sendMessage, setSendMessage] = useState("");
 
   useEffect(() => {
-    sock = new SockJs("/api/chat-socket");
-    sock.onopen = function () {
-      console.log("open");
-    };
+    client = Stomp.client("ws://localhost:8080/api/chat-socket");
 
-    sock.onmessage = function (e) {
-      console.log("message", e.data);
-      sock.close();
-    };
+    client.connect(null, () => {
+      console.log("Connected");
 
-    sock.onclose = function () {
-      console.log("close");
-    };
+      client.subscribe("/all", (message) => {
+        if (message.body) {
+          alert("got message with body " + message.body);
+        } else {
+          alert("got empty message");
+        }
+      });
+    });
+
+    // ws.onopen = (event) => {
+    //   console.log("Connected");
+    //   console.log(event);
+    // };
 
     return () => {
-      sock.close();
+      client.disconnect();
     };
   }, []);
 
-  return <div></div>;
+  return (
+    <div>
+      <div className="form-control">
+        <input
+          type="text"
+          placeholder="Message"
+          value={sendMessage}
+          onChange={(e) => setSendMessage(e.target.value)}
+          className="input input-bordered"
+        />
+        <button
+          className="btn"
+          onClick={() => {
+            client.send("/test", null, sendMessage);
+          }}
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  );
 }

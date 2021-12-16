@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axiosService from "../../services/axiosService";
 
 export default function UpdateCategoryModal({
   show,
@@ -18,7 +18,7 @@ export default function UpdateCategoryModal({
   async function handleUpdate(e) {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:8080/api/category/${firstData.id}`, {
+      await axiosService.put(`/category/${firstData.id}`, {
         title,
         topic,
       });

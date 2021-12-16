@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import RegisterVector from "../components/Register/RegisterVector";
-import axios from "axios";
+import axiosService from "../services/axiosService";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -16,7 +16,7 @@ export default function Register() {
       return;
     }
     try {
-      await axios.post("http://localhost:8080/api/auth/register", {
+      await axiosService.post("/auth/register", {
         firstName: name,
         lastName,
         email,

@@ -9,9 +9,13 @@ export default function TopicCard() {
   }, []);
 
   async function getCategory() {
-    let data = (await axiosService.get("/users")).data;
+    let data = (await axiosService.get("/category")).data;
     setCategories(data);
     setIsLoading(false);
+  }
+
+  if (categories && categories.length <= 0) {
+    return <h1>Tartışma Bulunmuyor</h1>;
   }
 
   return (
@@ -23,11 +27,11 @@ export default function TopicCard() {
               <div>
                 <div className="card lg:card-side bordered shadow-lg w-full ">
                   <figure>
-                  <img className="w-48 h-48"src="/public/logo.png" />
+                    <img className="w-48 h-48" src="/public/logo.png" />
                   </figure>
                   <div className="card-body">
-                    <h2 className="card-title">{category.firstName}</h2>
-                    <p>{category.lastName}</p>
+                    <h2 className="card-title">{category.title}</h2>
+                    <p>{category.topic}</p>
                     <div className="card-actions">
                       <button className="btn btn-primary">
                         Tartışmaya Katıl
